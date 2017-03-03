@@ -1,5 +1,4 @@
 #include "ZoomOutBoard.h"
-#include "QuadrantWinner.h"
 
 /*
   QuadrantWinner is a function that receives a uttt board and

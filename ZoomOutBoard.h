@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 
+#include "QuadrantWinner.h"
+
 using namespace std;
 
 vector<string> ZoomOutBoard(vector<string> board);
