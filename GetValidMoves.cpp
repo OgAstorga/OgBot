@@ -7,6 +7,12 @@ vector<pair<int, int> > getValidMoves(vector<string> board, pair<int, int> lastM
   vector<pair<int, int> > validMoves;
 
   vector<string> zoomedOutBoard = ZoomOutBoard(board);
+  char winner = QuadrantWinner(zoomedOutBoard, make_pair(0, 0));
+
+  // If there is a winner, then no more moves are valid
+  if (winner != '.') {
+    return validMoves;
+  }
 
   if (lastMove.first != -1 && lastMove.second != -1) {
     pair<int, int> moveQuadrant = lastMove;
