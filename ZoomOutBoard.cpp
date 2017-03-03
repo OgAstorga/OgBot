@@ -23,7 +23,7 @@
     x.x
     oxo
 */
-vector<string> ZoomOutBoard(vector<string> board) {
+vector<string> ZoomOutBoard(vector<string>& board) {
   vector<string> mini(3);
 
   for (int i=0; i<3; ++i) {

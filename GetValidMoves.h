@@ -9,6 +9,6 @@
 
 using namespace std;
 
-vector<pair<int, int> > getValidMoves(vector<string> board, pair<int, int> lastMove);
+vector<pair<int, int> > GetValidMoves(vector<string>&, pair<int, int>);
 
 #endif

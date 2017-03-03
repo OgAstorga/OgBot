@@ -23,7 +23,7 @@
     0 1 -> x
     1 1 -> .
 */
-char QuadrantWinner(vector<string> board, pair<int, int> quadrant) {
+char QuadrantWinner(vector<string>& board, pair<int, int> quadrant) {
   char winner;
   int x = quadrant.first * 3;
   int y = quadrant.second * 3;

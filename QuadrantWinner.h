@@ -7,6 +7,6 @@
 
 using namespace std;
 
-char QuadrantWinner(vector<string>, pair<int, int>);
+char QuadrantWinner(vector<string>&, pair<int, int>);
 
 #endif

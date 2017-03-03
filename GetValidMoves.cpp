@@ -3,7 +3,7 @@
 /*
   Calculates valid moves given current board and last move
 */
-vector<pair<int, int> > getValidMoves(vector<string> board, pair<int, int> lastMove) {
+vector<pair<int, int> > GetValidMoves(vector<string>& board, pair<int, int> lastMove) {
   vector<pair<int, int> > validMoves;
 
   vector<string> zoomedOutBoard = ZoomOutBoard(board);

@@ -8,6 +8,6 @@
 
 using namespace std;
 
-vector<string> ZoomOutBoard(vector<string> board);
+vector<string> ZoomOutBoard(vector<string>&);
 
 #endif
