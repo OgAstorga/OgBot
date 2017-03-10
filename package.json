@@ -1,0 +1,29 @@
+{
+  "name": "uttt-ia",
+  "version": "0.1.0",
+  "description": "Ultimate tic tac toe IA",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/win.js",
+    "install": "node-gyp rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ogasdiaz/OgBot.git"
+  },
+  "keywords": [
+    "ia",
+    "uttt",
+    "addon"
+  ],
+  "author": "Og Astorga",
+  "license": "ISC",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/ogasdiaz/OgBot/issues"
+  },
+  "homepage": "https://github.com/ogasdiaz/OgBot#readme"
+}
