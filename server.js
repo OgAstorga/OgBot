@@ -19,7 +19,12 @@ http.createServer((req, res) => {
     return res.end();
   }
 
-  res.writeHead(200, { 'Content-Type': 'application/json' });
+  res.writeHead(200, {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json'
+  });
   res.write(JSON.stringify(ans));
   res.end();
 }).listen(8001);
