@@ -7,6 +7,7 @@
     "test": "test"
   },
   "scripts": {
+    "start": "node server.js",
     "test": "node test/win.js",
     "install": "node-gyp rebuild"
   },
