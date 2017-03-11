@@ -9,7 +9,7 @@ http.createServer((req, res) => {
 
   let ans;
   try {
-    ans = utttIA.play(+query.lastx, +query.lasty, query.board);
+    ans = utttIA.play(+query.lastrow, +query.lastcol, query.board);
   } catch (err) {
     res.writeHead(500, { 'Content-Type': 'application/json' });
     console.error(err);
