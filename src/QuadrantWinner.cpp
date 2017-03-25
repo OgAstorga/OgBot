@@ -86,3 +86,30 @@ char QuadrantWinner(vector<string>& board, pair<int, int> quadrant) {
   // Not defined
   return '.';
 }
+
+vector<int> winners = {
+    7, // 000 000 111
+   56, // 000 111 000
+  448, // 111 000 000
+
+   73, // 001 001 001
+  146, // 010 010 010
+  292, // 100 100 100
+
+   84, // 001 010 100
+  273  // 100 010 001
+};
+
+pair<bool, bool> QuadrantWinner(pair<int, int>& quadrant) {
+  for (int it: winners) {
+    if ((quadrant.first & it) == it) {
+      return make_pair(true, false);
+    }
+
+    if ((quadrant.second & it) == it) {
+      return make_pair(false, true);
+    }
+  }
+
+  return make_pair(false, false);
+}
