@@ -15,6 +15,7 @@ public:
   pair<short, short> quadrant(short row, short col);
   pair<short, short> macro_board();
   bool quadrant_won(short& quadrant);
+  vector<short> valid_moves(short);
 };
 
 #endif
