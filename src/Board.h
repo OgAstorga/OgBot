@@ -10,12 +10,15 @@ using namespace std;
 class Board {
 public:
   bitset<162> board;
+
   Board(bitset<162>);
   Board(vector<string>);
+
   pair<short, short> quadrant(short row, short col);
   pair<short, short> macro_board();
   bool quadrant_won(short& quadrant);
   vector<short> valid_moves(short);
+  void set_cell(short, short);
 };
 
 #endif
