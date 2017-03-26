@@ -52,6 +52,7 @@ public:
   bool quadrant_won(short& quadrant);
   vector<short> valid_moves(short);
   void set_cell(short, short);
+  string to_string();
 };
 
 #endif

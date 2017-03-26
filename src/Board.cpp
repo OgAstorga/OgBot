@@ -116,3 +116,36 @@ pair<short, short> Board::macro_board() {
 
   return make_pair(o_macro, x_macro);
 }
+
+string Board::to_string() {
+  string human_board[9];
+
+  for (int i=0; i<9; ++i) {
+    human_board[i] = ".........";
+  }
+
+  for (int i=0; i<9; ++i) {
+    for (int j=0; j<9; ++j) {
+      short row = i / 3;
+      short col = i % 3;
+      short srow = j / 3;
+      short scol = j % 3;
+
+      if (board.test(i*9 + j)) {
+        human_board[row*3 + srow][col*3 + scol] = 'o';
+      } else if (board.test(i*9 + j + 81)) {
+        human_board[row*3 + srow][col*3 + scol] = 'x';
+      }
+    }
+  }
+
+  string complete = "";
+  for (int i=0; i<9; ++i) {
+    if (i) {
+      complete += "\n";
+    }
+    complete += human_board[i];
+  }
+
+  return complete;
+}
