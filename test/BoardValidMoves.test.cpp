@@ -25,14 +25,14 @@ int main() {
   }
 
   valid_moves = b1.valid_moves(8*8 + 8);
-  if (valid_moves.size() == 19) {
+  if (valid_moves.size() == 14) {
     cout << "pass" << endl;
   } else {
     cout << "fail" << endl;
   }
 
   valid_moves = b1.valid_moves(4*9 + 3);
-  if (valid_moves.size() == 19) {
+  if (valid_moves.size() == 14) {
     cout << "pass" << endl;
   } else {
     cout << "fail" << endl;
@@ -54,6 +54,25 @@ int main() {
 
   valid_moves = b2.valid_moves(4*9 + 1);
   if (valid_moves.size() == 1 && valid_moves[0] == (9*1 + 1)) {
+    cout << "pass" << endl;
+  } else {
+    cout << "fail" << endl;
+  }
+
+  Board b3({
+    "oooo..o..",
+    ".........",
+    ".........",
+    "...o.....",
+    "....o....",
+    ".........",
+    ".........",
+    ".........",
+    ".........",
+  });
+
+  valid_moves = b3.valid_moves(2*9 + 0);
+  if (valid_moves.size() == 9*8 - 4) {
     cout << "pass" << endl;
   } else {
     cout << "fail" << endl;
