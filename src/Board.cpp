@@ -79,22 +79,6 @@ Board::Board(vector<string> initial) {
   board = bitset_board;
 }
 
-pair<short, short> Board::quadrant(short row, short col) {
-  short o_quadrant = 0, x_quadrant = 0;
-
-  for (int i=0; i<9; ++i) {
-    if (board.test((row*3 + col) * 9 + i)) {
-      o_quadrant |= (1<<i);
-    }
-
-    if (board.test((row*3 + col) * 9 + 81 + i)) {
-      x_quadrant |= (1<<i);
-    }
-  }
-
-  return make_pair(o_quadrant, x_quadrant);
-}
-
 bool Board::quadrant_won(short& quadrant) {
   for (short it: quadrant_winners) {
     if ((quadrant & it) == it) {
