@@ -117,11 +117,15 @@ pair<short, short> Board::macro_board() {
   return make_pair(o_macro, x_macro);
 }
 
-string Board::to_string() {
+string Board::to_string(bool border) {
   string human_board[9];
 
   for (int i=0; i<9; ++i) {
-    human_board[i] = ".........";
+    if (border) {
+      human_board[i] = "...|...|...";
+    } else {
+      human_board[i] = ".........";
+    }
   }
 
   for (int i=0; i<9; ++i) {
@@ -131,10 +135,15 @@ string Board::to_string() {
       short srow = j / 3;
       short scol = j % 3;
 
+      short offset = 0;
+      if (border) {
+        offset = (col*3 + scol)/3;
+      }
+
       if (board.test(i*9 + j)) {
-        human_board[row*3 + srow][col*3 + scol] = 'o';
+        human_board[row*3 + srow][col*3 + scol + offset] = 'o';
       } else if (board.test(i*9 + j + 81)) {
-        human_board[row*3 + srow][col*3 + scol] = 'x';
+        human_board[row*3 + srow][col*3 + scol + offset] = 'x';
       }
     }
   }
@@ -144,6 +153,11 @@ string Board::to_string() {
     if (i) {
       complete += "\n";
     }
+
+    if (border && i && i%3 == 0) {
+      complete += "---+---+---\n";
+    }
+
     complete += human_board[i];
   }
 
