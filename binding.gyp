@@ -3,7 +3,13 @@
     {
       "target_name": "utt-ia",
       "sources": [
-        "src/UttIA.cpp",
+        "src/node-gyp.cpp",
+
+        "src/Board.cpp",
+        "src/BoardSetCell.cpp",
+        "src/BoardValidMoves.cpp",
+        "src/GameSimulator.cpp",
+
         "src/MoveWithMonteCarlo.cpp",
         "src/GetValidMoves.cpp",
         "src/ZoomOutBoard.cpp",

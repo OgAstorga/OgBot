@@ -1,5 +1,6 @@
 #include <utility>
 
+#include "Board.h"
 #include "MoveWithMonteCarlo.h"
 
 #include <node.h>
@@ -60,34 +61,53 @@ void Play(const FunctionCallbackInfo<Value>& args) {
     }
   }
 
-  // Calc move
-  pair<int, int> move = MoveWithMonteCarlo(vectorBoard, lastMove);
+  int row = lastMove.first / 3;
+  int col =  lastMove.second / 3;
+  int srow = lastMove.first % 3;
+  int scol = lastMove.second % 3;
 
-  // Do move
-  char player = FIRST_PLAYER;
-  if (lastMove.first != -1 && lastMove.second != -1) {
-    player = (vectorBoard[lastMove.first][lastMove.second] == 'o') ? 'x' : 'o';
+  Board board(vectorBoard);
+
+  // Calc move
+  short lmove = (row*3 + col)*9 + (srow*3 + scol);
+
+  if (board.valid_moves(lmove).size() == 0) {
+    // Board must be playable
+    isolate->ThrowException(Exception::TypeError(
+      String::NewFromUtf8(isolate, "Board state is unplayable")
+    ));
+
+    return;
   }
 
-  vectorBoard[move.first][move.second] = player;
+  short nmove = MoveWithMonteCarlo(board, lmove);
+
+  // Do move
+  if (nmove != -1) {
+    short player = 1;
+    if (board.board.test(lmove)) {
+      player = 2;
+    }
+
+    board.set_cell(nmove, player);
+
+    row = (nmove / 9) / 3;
+    col = (nmove / 9) % 3;
+    srow = (nmove % 9) / 3;
+    scol = (nmove % 9) % 3;
+  }
 
   // Prepare JS output
   Local<Object> obj = Object::New(isolate);
 
   // insert lastMove to JS output
   Local<Object> lastMoveObject = Object::New(isolate);
-  lastMoveObject->Set(String::NewFromUtf8(isolate, "x"), Number::New(isolate, move.second));
-  lastMoveObject->Set(String::NewFromUtf8(isolate, "y"), Number::New(isolate, move.first));
+  lastMoveObject->Set(String::NewFromUtf8(isolate, "x"), Number::New(isolate, col*3 + scol));
+  lastMoveObject->Set(String::NewFromUtf8(isolate, "y"), Number::New(isolate, row*3 + srow));
   obj->Set(String::NewFromUtf8(isolate, "lastMove"), lastMoveObject);
 
   // Insert board to JS output
-  stringBoard = string(81, '.');
-  for (int row=0; row<9; ++row) {
-    for (int col=0; col<9; ++col) {
-      stringBoard[row*9 + col] = vectorBoard[row][col];
-    }
-  }
-  obj->Set(String::NewFromUtf8(isolate, "board"), String::NewFromUtf8(isolate, stringBoard.c_str()));
+  obj->Set(String::NewFromUtf8(isolate, "board"), String::NewFromUtf8(isolate, board.to_string(false).c_str()));
 
   args.GetReturnValue().Set(obj);
 }
