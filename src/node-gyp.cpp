@@ -1,7 +1,7 @@
 #include <utility>
 
 #include "Board.h"
-#include "MoveWithMonteCarlo.h"
+#include "MoveWithNegamax.h"
 
 #include <node.h>
 
@@ -80,7 +80,7 @@ void Play(const FunctionCallbackInfo<Value>& args) {
     return;
   }
 
-  short nmove = MoveWithMonteCarlo(board, lmove);
+  short nmove = MoveWithNegamax(board, lmove);
 
   // Do move
   if (nmove != -1) {
